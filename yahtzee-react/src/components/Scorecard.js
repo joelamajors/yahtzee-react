@@ -7,11 +7,11 @@ const Scorecard = () => {
     return (
       <tbody>
         <tr>
-          <td>Players:</td>
+          <th>Players:</th>
           <td>{player.name}</td>
         </tr>
         <tr>
-          <td>Total Points:</td>
+          <th>Total Points:</th>
           <td>{player.score}</td>
         </tr>
       </tbody>
@@ -24,12 +24,4 @@ const Scorecard = () => {
     </table>
   );
 }
-
-// Scorecard.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   index: PropTypes.number.isRequired,
-//   score: PropTypes.number.isRequired,
-// }
-
-
 export default Scorecard
