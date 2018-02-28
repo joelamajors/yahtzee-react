@@ -6,7 +6,7 @@ import {Grid, Row, Col, Webpack} from 'react-bootstrap'
 
 const Scorecard = () => {
   let players = PlayerList.map((player) => {
-    return [
+    return (
       <Grid>
         <Row className="show-grid">
           <Col xs={6}>Players:</Col>
@@ -115,11 +115,11 @@ const Scorecard = () => {
 
       </Grid>
 
-    ];
+    );
   })
 
   return [
-      {players}
+      players
   ];
 }
 
