@@ -1,131 +1,38 @@
 import React from 'react'
-import PlayerList from '../data/players'
+import Player from './Player'
 import {Grid, Row, Col} from 'react-bootstrap'
 
 const Scorecard = () => {
-  let players = PlayerList.map((player) => {
-    return (
-      <Col sm={6} md={4}>
-        <Grid className="score-grid">
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Players:</Col>
-            <Col xs={6} sm={4} md={2} >{player.name}</Col>
-          </Row>
-          
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Aces:</Col>
-            <Col xs={6} sm={4} md={2} >{player.aces}</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Deuces:</Col>
-            <Col xs={6} sm={4} md={2} >{player.deuces}</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Threes:</Col>
-            <Col xs={6} sm={4} md={2} >{player.triples}</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Fours:</Col>
-            <Col xs={6} sm={4} md={2} >{player.quadruples}</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Fives:</Col>
-            <Col xs={6} sm={4} md={2} >{player.quintuples}</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Sixes:</Col>
-            <Col xs={6} sm={4} md={2} >{player.sextuples}</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Total:</Col>
-            <Col xs={6} sm={4} md={2} >reduce({player.aces} +
-                                              {player.deuces} +
-                                              {player.triples} +
-                                              {player.quadruples} +
-                                              {player.quintuples} +
-                                              {player.sextuples})</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Upper Bonus:</Col>
-            <Col xs={6} sm={4} md={2} >compute if total > 63, add 35</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Upper Total:</Col>
-            <Col xs={6} sm={4} md={2} >Total of the above two values</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Three of a Kind:</Col>
-            <Col xs={6} sm={4} md={2} >{player.threeKind}</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Four of a Kind:</Col>
-            <Col xs={6} sm={4} md={2} >{player.fourKind}</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Full House:</Col>
-            <Col xs={6} sm={4} md={2} >{player.fullHouse}</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Small Straight:</Col>
-            <Col xs={6} sm={4} md={2} >{player.smallStraight}</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Large Straight:</Col>
-            <Col xs={6} sm={4} md={2} >{player.largeStraight}</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Yahtzee!:</Col>
-            <Col xs={6} sm={4} md={2} >{player.yahtzee}</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Chance:</Col>
-            <Col xs={6} sm={4} md={2} >{player.chance}</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Bonus:</Col>
-            <Col xs={6} sm={4} md={2} >{player.bonus}x100</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Lower Total:</Col>
-            <Col xs={6} sm={4} md={2} >Computed</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Upper Total:</Col>
-            <Col xs={6} sm={4} md={2} >Pulled from above</Col>
-          </Row>
-        
-          <Row className="show-grid">
-            <Col className="scorecard-titles" xs={6} sm={4} md={2} >Grand Total:</Col>
-            <Col xs={6} sm={4} md={2} >Lower + Upper</Col>
-          </Row>
-        
-        </Grid>
-      </Col>
-
-    );
-  })
-
-  return [
-      players
-  ];
+  return (
+    <Col xs={6} >
+      <Grid className="score-grid">
+        <Col xs={6} sm={4} md={2} >
+          <Row className="show-grid"><Col className="scorecard-titles" >Players:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Aces:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Deuces:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Threes:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Fours:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Fives:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Sixes:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Total:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Upper Bonus:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Upper Total:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Three of a Kind:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Four of a Kind:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Full House:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Small Straight:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Large Straight:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Yahtzee!:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Chance:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Bonus:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Lower Total:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Upper Total:</Col></Row>
+          <Row className="show-grid"><Col className="scorecard-titles" >Grand Total:</Col></Row>
+        </Col>
+        <Player />
+      </Grid>
+    </Col>
+  );
 }
 
 export default Scorecard
