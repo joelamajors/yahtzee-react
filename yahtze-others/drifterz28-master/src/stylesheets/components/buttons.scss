@@ -1,0 +1,18 @@
+button {
+  background-color: #3093c7;
+  background-image: linear-gradient(to bottom, #3093c7, #1c5a85);
+  border-radius: 3px;
+  border: 1px solid #CCC;
+  box-shadow: #FEF 0 1px 1px;
+  color: #fff;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+  text-decoration: none;
+  &:hover {
+     border: 1px solid #ADADAD;
+     background-color: #26759e;
+     background-image: linear-gradient(to bottom, #26759e, #133d5b);
+  }
+}

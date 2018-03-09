@@ -1,0 +1,198 @@
+@import '../../params.less';
+
+@diceBorderSize: 2px;
+@dotRadius: 10.7%;
+@dotBorderSize: 2px;
+@dotCircleRadius: 30%;
+@dotMid: 50% - @dotRadius; // The position of a dot if it would be placed in the middle of the dice.
+
+.dice {
+  background: @diceColor;
+  border-top: @diceBorderSize solid 1.11*@diceColor;
+  border-right: @diceBorderSize solid 0.90*@diceColor;
+  border-bottom: @diceBorderSize solid 0.86*@diceColor;
+  border-left: @diceBorderSize solid 1.08*@diceColor;
+  border-radius: 16%;
+  box-shadow: 10% 10% 10% #222;
+  transition: @transitionTime;
+	user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  
+  height: @diceSizeSmall;
+  width: @diceSizeSmall;
+  @media @desktop {
+    height: @diceSizeLarge;
+    width: @diceSizeLarge;
+  }
+
+  &.small {
+    height: @diceSizeSmall/2;
+    width: @diceSizeSmall/2;
+    @media @desktop {
+      height: @diceSizeLarge/2;
+      width: @diceSizeLarge/2;
+    }
+  }
+
+  &.active {
+    cursor: pointer;
+  }
+
+  .diceContents {
+    height: 100%;
+    position: relative;
+    transition: @transitionTime all ease;
+    width: 100%;
+
+    .dot {
+      border-radius: 50%;
+      height: 2*@dotRadius;
+      position: absolute;
+      transition: @transitionTime;
+      width: 2*@dotRadius;
+    }
+  }
+
+  // Hotkey indicator.
+  .diceHotkey {
+    bottom: 2%;
+    color: @hotkeyColor*0.67;
+    font-size: 12px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+  }
+
+  // Colors of the dots. We loop through the color list.
+  .rollsLeftLoop (@i) when (@i >= 0) {
+    &.rollsLeft@{i} {
+      @rollsLeftColor: extract(@dotColors, @i + 1);
+      .dot {
+        background: @rollsLeftColor;
+        border-top: @dotBorderSize solid 0.86*@rollsLeftColor;
+        border-right: @dotBorderSize solid 1.08*@rollsLeftColor;
+        border-bottom: @dotBorderSize solid 1.11*@rollsLeftColor;
+        border-left: @dotBorderSize solid 0.90*@rollsLeftColor;
+      }
+    }
+    .rollsLeftLoop(@i - 1);
+  }
+  .rollsLeftLoop(length(@dotColors) - 1);
+
+  // Dice internals: getting the dots in the right place.
+  &.noNumber {
+    .diceContents {
+      animation: spin 2s linear infinite;
+    }
+    // Loop through the dots, putting them in a circle.
+    .dotLoop (@i) when (@i > 0) {
+      .dot@{i} {
+        left: @dotMid + sin(-30deg + @i*60deg)*@dotCircleRadius;
+        top: @dotMid - cos(-30deg + @i*60deg)*@dotCircleRadius;
+      }
+      .dotLoop(@i - 1);
+    }
+    .dotLoop(6);
+  }
+  &.number1 {
+    .dot1, .dot2, .dot3, .dot4, .dot5, .dot6 {
+      left: @dotMid;
+      top: @dotMid;
+    }
+  }
+  &.number2 {
+    .dot1, .dot2, .dot6 {
+      left: @dotMid + @dotCircleRadius;
+      top: @dotMid - @dotCircleRadius;
+    }
+    .dot3, .dot4, .dot5 {
+      left: @dotMid - @dotCircleRadius;
+      top: @dotMid + @dotCircleRadius;
+    }
+  }
+  &.number3 {
+    .dot1, .dot2 {
+      left: @dotMid + @dotCircleRadius;
+      top: @dotMid - @dotCircleRadius;
+    }
+    .dot3, .dot6 {
+      left: @dotMid;
+      top: @dotMid;
+    }
+    .dot4, .dot5 {
+      left: @dotMid - @dotCircleRadius;
+      top: @dotMid + @dotCircleRadius;
+    }
+  }
+  &.number4 {
+    .dot1, .dot2 {
+      left: @dotMid + @dotCircleRadius;
+      top: @dotMid - @dotCircleRadius;
+    }
+    .dot3 {
+      left: @dotMid + @dotCircleRadius;
+      top: @dotMid + @dotCircleRadius;
+    }
+    .dot4, .dot5 {
+      left: @dotMid - @dotCircleRadius;
+      top: @dotMid + @dotCircleRadius;
+    }
+    .dot6 {
+      left: @dotMid - @dotCircleRadius;
+      top: @dotMid - @dotCircleRadius;
+    }
+  }
+  &.number5 {
+    .dot1 {
+      left: @dotMid + @dotCircleRadius;
+      top: @dotMid - @dotCircleRadius;
+    }
+    .dot2, .dot5 {
+      left: @dotMid;
+      top: @dotMid;
+    }
+    .dot3 {
+      left: @dotMid + @dotCircleRadius;
+      top: @dotMid + @dotCircleRadius;
+    }
+    .dot4 {
+      left: @dotMid - @dotCircleRadius;
+      top: @dotMid + @dotCircleRadius;
+    }
+    .dot6 {
+      left: @dotMid - @dotCircleRadius;
+      top: @dotMid - @dotCircleRadius;
+    }
+  }
+  &.number6 {
+    .dot1 {
+      left: @dotMid + @dotCircleRadius;
+      top: @dotMid - @dotCircleRadius;
+    }
+    .dot2 {
+      left: @dotMid + @dotCircleRadius;
+      top: @dotMid;
+    }
+    .dot3 {
+      left: @dotMid + @dotCircleRadius;
+      top: @dotMid + @dotCircleRadius;
+    }
+    .dot4 {
+      left: @dotMid - @dotCircleRadius;
+      top: @dotMid + @dotCircleRadius;
+    }
+    .dot5 {
+      left: @dotMid - @dotCircleRadius;
+      top: @dotMid;
+    }
+    .dot6 {
+      left: @dotMid - @dotCircleRadius;
+      top: @dotMid - @dotCircleRadius;
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

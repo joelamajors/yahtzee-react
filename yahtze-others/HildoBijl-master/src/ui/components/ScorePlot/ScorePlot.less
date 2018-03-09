@@ -1,0 +1,67 @@
+@import '../../params.less';
+
+#scorePlot {
+	margin: 12px 0;
+	width: 100%;
+
+	rect {
+		cursor: pointer;
+		fill: 0.8*@keepBarColor;
+		stroke: #fff;
+		stroke-width: 0.4;
+
+		&:hover {
+			fill: 1.2*@keepBarColor;
+		}
+	}
+
+	.domain {
+		stroke: #fff;
+	}
+	.tick {
+		line {
+			stroke: #fff;
+		}
+		text {
+			fill: #fff;
+		}
+	}
+}
+
+.scorePlotTip {
+	align-items: center;
+	display: flex;
+	flex-flow: column nowrap;
+
+	.games {
+		font-size: 1.2em;
+		font-weight: bold;
+	}
+	.scores {
+		font-size: 0.8em;
+		margin-top: 4px;		
+	}
+}
+
+.d3-tip {
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 8px;
+	color: #fff;
+	padding: 8px;
+	pointer-events: none;
+	
+	&:after {
+		content: '';
+		height: 0; 
+		position: absolute;
+		width: 0;
+	}
+	&.n:after { // Style for north alignment.
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-top: 10px solid rgba(0, 0, 0, 0.8);
+		left: 50%;
+		top: 100%;
+		transform: translateX(-50%);
+	}
+}

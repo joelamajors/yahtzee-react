@@ -1,0 +1,43 @@
+@import '../../params.less';
+
+.menuItem {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	height: 100%;
+	opacity: 0.7;
+	user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+	
+	.title {
+		font-size: 12px;
+		@media @desktop {
+			font-size: 14px;
+		}
+	}
+
+	.icon {
+		margin: 0px 4px;
+		height: 16px;
+		width: 16px;
+		@media @desktop {
+			margin: 0px 8px;
+			height: 20px;
+			width: 20px;
+		}
+
+		svg {
+  		fill: currentColor;
+		}
+	}
+	
+	&.active {
+		cursor: auto;
+	}
+
+	&:hover, &.active {
+		opacity: 1;
+	}
+}

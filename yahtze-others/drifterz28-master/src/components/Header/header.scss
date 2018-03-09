@@ -1,0 +1,18 @@
+.navbar {
+  background-color: #fff;
+  border-bottom: 4px #0f9bb2 solid;
+  box-shadow: none;
+
+  .navbar-brand {
+    padding: 15px;
+
+    img {
+      height: 100%;
+      margin: 0;
+    }
+  }
+
+  .welcome {
+    padding: 21.5px 15px;
+  }
+}

@@ -1,0 +1,53 @@
+.boardWrapper {
+  width: 900px;
+  margin: 0 auto;
+}
+
+.upper {
+  display: flex;
+}
+
+.sectionLabel {
+  border: 1px solid;
+  line-height: 2.2;
+  font-size: 18px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  &:hover {
+    .helper {
+      transform: translateY(0);
+    }
+  }
+  .label {
+    padding-left: 20px;
+    flex-grow: 3;
+    width: 50%;
+  }
+  .scoreBox {
+    flex-grow: 2;
+    border-left: 1px solid;
+    width: 25%;
+    text-align: center;
+  }
+}
+
+.upperScore {
+  line-height: 4.45;
+}
+
+.lower,
+.upper {
+  width: 50%;
+  float: left;
+}
+
+.helper {
+  position: absolute;
+  left: 20px;
+  line-height: 1;
+  font-size: 12px;
+  bottom: 0;
+  transform: translateY(20px);
+  transition: all 0.2s ease;
+}

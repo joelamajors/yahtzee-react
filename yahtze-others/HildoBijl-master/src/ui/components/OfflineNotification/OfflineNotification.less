@@ -1,0 +1,21 @@
+@import '../../params.less';
+
+.offlineNotification {
+	max-height: 0;
+	overflow: hidden;
+	text-align: center;
+	transition: 200ms;
+	width: 100%;
+}
+.offlineNotification > span {
+	border-radius: 4px;
+	color: @warningColor;
+	font-weight: bold;
+}
+
+.offlineNotification.active {
+	max-height: 2em;
+	transition: 600ms;
+}
+
+

@@ -1,0 +1,147 @@
+@import '../../params.less';
+
+@feedbackItemHeight: 15px;
+@feedbackPadding: 2px;
+
+.directFeedback {
+	background: #000;
+	border: 1px solid #bbb;
+	border-radius: 2px;
+	font-family: "Courier New", Courier, monospace;
+	overflow: hidden;
+	position: absolute;
+	transform: translateY(-50%);
+
+	font-size: 10px;
+	right: 6%;
+	top: @keepBarTopPhone - 35px;
+	width: 190px;
+	@media @desktop {
+		font-size: 12px;
+		right: 14%;
+		top: @keepBarTopDesktop - 36px;
+		width: 240px;
+	}
+
+	&.loading {
+		animation: directFeedbackLoading 2s ease infinite;
+		background-image: linear-gradient(to bottom, #000, #bbb, #000, #000);
+		background-repeat: no-repeat;
+	}
+
+	.feedbackContainer {
+		align-items: stretch;
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: flex-start;
+		position: absolute;
+		transition: top 0.4s ease-in-out;
+		width: 100%;
+
+		.item {
+			align-items: stretch;
+			display: flex;
+			flex-flow: row nowrap;
+			height: @feedbackItemHeight;
+			justify-content: space-between;
+			line-height: @feedbackItemHeight;
+			overflow: hidden;
+			width: 100%;
+
+			.description {
+				flex-shrink: 1;
+				overflow: hidden;
+				padding: 0 2px;
+				white-space: nowrap;
+			}
+			.number {
+				flex-shrink: 0;
+				padding: 0 4px;
+			}
+		}
+		.bar {
+			border-color: #fff;
+			border-style: solid;
+			border-width: 0 0 1px 0;
+			height: 0px;
+			margin: 0 2px;
+		}
+	}
+
+	&.size0 {
+		display: none;
+	}
+
+	.showFeedbackSizes(@i: 3) when (@i > 0) {
+		.showFeedbackSizes(@i - 1);
+		&.size@{i} {
+			height: @i*@feedbackItemHeight + 2*@feedbackPadding;
+
+			.feedbackContainer {
+				top: @feedbackPadding; // The usual position, in the middle of the feedback block.
+			}
+			.feedbackContainer-enter {
+				top: @i*@feedbackItemHeight + 3*@feedbackPadding; // Below the feedback block, where it appears to come from.
+			}
+			.feedbackContainer-exit {
+				top: -@i*@feedbackItemHeight - @feedbackPadding; // Above the feedback block, where it appears to go to.
+			}
+			.feedbackContainer-enter-active {
+				top: @feedbackPadding; // The usual position, in the middle of the feedback block. This is repeated to gain priority over the above.
+			}
+		}
+	}
+	.showFeedbackSizes();
+
+	// // Set up the positions of the feedbacks.
+	// .luckFeedback, .choiceFeedback, .scoreFeedback {
+	// 	left: 4px;
+	// 	position: absolute;
+	// 	transition: top 0.4s ease-in-out;
+	// }
+	// @top: 4px;
+	// @height: 18px;
+	// @fullHeight: 60px;
+	// @classes: luckFeedback, choiceFeedback, scoreFeedback;
+	// .showFeedbackClasses(@i: length(@classes)) when (@i > 0) {
+	// 	.showFeedbackClasses(@i - 1);
+	// 	@class: extract(@classes, @i);
+	// 	.@{class} {
+	// 		top: @top + (@i - 1)*@height;
+	// 	}
+	// 	.@{class}-exit {
+	// 		top: @top + (@i - 1)*@height - @fullHeight;
+	// 	}
+	// 	.@{class}-enter {
+	// 		top: @top + (@i - 1)*@height + @fullHeight;
+	// 	}
+	// 	.@{class}-enter-active {
+	// 		top: @top + (@i - 1)*@height;
+	// 	}
+	// }
+	// .showFeedbackClasses();
+	// .luckFeedback {
+	//   top: 4px;
+	//   &.luckFeedback-enter {
+	//     top: -56px;
+	//   }
+	// }
+	// .choiceFeedback {
+	//   top: 22px;
+	//   &.old {
+	//     top: -38px;
+	//   }
+	// }
+	// .scoreFeedback {
+	//   top: 40px;
+	//   &.old {
+	//     top: -20px;
+	//   }
+	// }
+}
+
+// The animation for the direct feedback loading.
+@keyframes directFeedbackLoading { 
+  0% { background-position: 0 80px }
+  100% { background-position: 0 -80px }
+}
